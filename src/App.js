@@ -5,6 +5,7 @@ import About from "./components/About";
 import Header from "./components/Header";
 import Sidebar from "./containers/Sidebar";
 import ProjectContainer from "./containers/ProjectContainer";
+import Login from './components/Login'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Switch>
         <Route path='/about' component={About} />
+        <Route path='/login' component={Login} />
         <div className='home-container'>
           <Sidebar />
           <ProjectContainer />
