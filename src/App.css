@@ -13,6 +13,34 @@ li {
 }
 
 
+
+/*************************
+    Home Container
+*************************/
+
+.home-container {
+  height: 96vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 
+    "sidebar project project"
+}
+
+.sidebar-container {
+  grid-area: sidebar;
+  width: 75%;
+  margin: 0 auto;
+  background: rgb(white);
+  
+}
+
+.project-container {
+  grid-area: project;
+}
+
+
+
 /*************************
     Header Component
 *************************/

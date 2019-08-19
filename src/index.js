@@ -7,11 +7,5 @@ import Header from './components/Header'
 
 
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Header />
-    <App />
-  </BrowserRouter>, 
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
