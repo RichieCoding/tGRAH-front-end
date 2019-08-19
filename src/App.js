@@ -7,6 +7,7 @@ import Sidebar from "./containers/Sidebar";
 import ProjectContainer from "./containers/ProjectContainer";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import ListContainer from "./containers/ListContainer"
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path='/about' component={About} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
+          <Route path='/project' component={ListContainer} />
           <div className='home-container'>
             <Sidebar />
             <ProjectContainer />
