@@ -4,9 +4,7 @@ import Project from "../components/Project";
 class ProjectContainer extends Component {
   state = {
     projectList: [
-      { name: 'Project1'},
-      { name: 'Project2'},
-      { name: 'Project3'}
+      { name: 'My First Project!'}
     ]
   };
 
