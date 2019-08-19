@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
@@ -8,7 +8,7 @@ class Header extends Component {
         <div className="header-container">
           <h1>Trello Clone</h1>
           <ul>
-            <li>Home</li>
+            <li><Link to="/">Home</Link></li>
             <li>Boards</li>
             <li><Link to="/about">About</Link></li>
           </ul>
