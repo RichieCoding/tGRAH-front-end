@@ -30,13 +30,14 @@ li {
 .sidebar-container {
   grid-area: sidebar;
   width: 75%;
-  margin: 0 auto;
+  margin: 1.5em auto;
   background: rgb(white);
   
 }
 
 .project-container {
   grid-area: project;
+  margin-top: 1.5em;
 }
 
 .single-project-container {
@@ -100,7 +101,7 @@ li {
 
 .project {
   margin: 1.3em;
-  background: red;
+  background: rgb(224, 224, 224);
   height: 150px;
   width: 150px;
 }
