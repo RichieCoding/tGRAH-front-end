@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
-      <div className="header">
+      <nav className="header">
         <div className="header-container">
           <h1>Trello Clone</h1>
           <ul>
             <li>Home</li>
             <li>Boards</li>
-            <li>About</li>
+            <li><Link to="/about">About</Link></li>
           </ul>
         </div>
-      </div>
+      </nav>
     )
   }
 }
