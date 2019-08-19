@@ -6,7 +6,7 @@ import About from './components/About'
 
 function App() {
   return (
-    <Switch className="App">
+    <Switch>
      <Route path="/about" component={About} />
     </Switch>
   );

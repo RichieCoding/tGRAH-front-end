@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 
 /*************************
     Header Component
@@ -27,7 +31,7 @@ a {
 }
 
 .header h1 {
-  
+  font-size: 2em;
 }
 
 .header ul li {
@@ -35,3 +39,26 @@ a {
   margin-left: 15px;
 }
 
+.header ul li a:hover {
+  color: rgb(252, 252, 252);
+}
+
+.header a {
+  padding: 15px;
+}
+
+.header a:visited {
+  color: black;
+} 
+
+/*************************
+     About Component
+*************************/
+
+.about-container {
+  color: black;
+  font-size: 1.5em;
+  width: 75%;
+  margin: 10px auto;
+  text-align: center
+}
