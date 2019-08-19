@@ -21,25 +21,29 @@ li {
 .home-container {
   height: 96vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
   grid-template-areas: 
-    "sidebar project project"
+    "sidebar project"
 }
 
 .sidebar-container {
   grid-area: sidebar;
   width: 75%;
-  margin: 0 auto;
+  margin: 1.5em auto;
   background: rgb(white);
   
 }
 
 .project-container {
   grid-area: project;
+  margin-top: 1.5em;
 }
 
-
+.single-project-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 /*************************
     Header Component
@@ -89,4 +93,15 @@ li {
   width: 75%;
   margin: 10px auto;
   text-align: center
+}
+
+/*************************
+     Project Component
+*************************/
+
+.project {
+  margin: 1.3em;
+  background: rgb(224, 224, 224);
+  height: 150px;
+  width: 150px;
 }
