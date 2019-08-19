@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class Signup extends Component {
   state = {
+    name: '',
     username: "",
+    email: "",
     password: ""
   };
 
@@ -16,30 +18,47 @@ class Login extends Component {
   render() {
     return (
       <div className='login-component'>
-        <div id="login-header">
-          <h2>Login</h2>
+        <div id='login-header'>
+          <h2>Signup</h2>
         </div>
         <form>
+          <input
+            type='text'
+            name='name'
+            placeholder='Name'
+            onChange={this.handleChange}
+            value={this.state.name}
+          />{" "}
+          <br />
+          <input
+            type='text'
+            name='email'
+            placeholder='Email'
+            onChange={this.handleChange}
+            value={this.state.email}
+          /> <br></br>
           <input
             type='text'
             name='username'
             placeholder='Username'
             onChange={this.handleChange}
             value={this.state.username}
-          /> <br></br>
+          />{" "}
+          <br />
           <input
             type='password'
             name='password'
             placeholder='Password'
             onChange={this.handleChange}
             value={this.state.password}
-          /> <br></br>
+          />{" "}
+          <br />
           <input type='submit' />
         </form>
-        <p><Link to={'/signup'}>Create an Account</Link></p>
+        <p><Link to={'/login'}>Back to Login</Link></p>
       </div>
     );
   }
 }
 
-export default Login;
+export default Signup;
