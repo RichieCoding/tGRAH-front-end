@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
+
+  // currentUser = () => {
+  //   currentFirstLetter
+  // }
+
   render() {
     return (
       <nav className="header">
@@ -10,8 +15,8 @@ class Header extends Component {
           { this.props.login ?
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li>Boards</li>
             <li><Link to="/about">About</Link></li>
+            <li>{this.props.currentUser.username}</li>
           </ul>
           :
           null
