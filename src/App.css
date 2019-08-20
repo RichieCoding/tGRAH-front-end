@@ -168,3 +168,12 @@ input[type=submit]:hover {
   color: white;
   background: rgb(87, 228, 181);
 }
+
+#puglove {
+  margin-top: 5em;
+}
+
+#doggie-running {
+  margin-top: 15em;
+  width: 10em;
+}

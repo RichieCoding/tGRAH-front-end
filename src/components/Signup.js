@@ -56,6 +56,7 @@ class Signup extends Component {
           <input type='submit' />
         </form>
         <p><Link to={'/login'}>Back to Login</Link></p>
+        <marquee behavior="scroll" direction="right"><img id="doggie-running" src="https://media.giphy.com/media/6CB3hti3o9QGODWTWO/giphy.gif" alt="doggie"/></marquee>
       </div>
     );
   }

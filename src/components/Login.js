@@ -37,7 +37,7 @@ class Login extends Component {
           <input type='submit' />
         </form>
         <p><Link to={'/signup'}>Create an Account</Link></p>
-        <img src='https://media0.giphy.com/media/onsxwAbM8xUNa/source.gif' alt="doggie"/>
+        <img id="puglove" src='https://media0.giphy.com/media/onsxwAbM8xUNa/source.gif' alt="doggie"/>
       </div>
     );
   }
