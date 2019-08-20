@@ -76,7 +76,7 @@ class App extends Component {
   render() {
     return this.state.login ? (
       <Router>
-        <Header login={this.state.login} />
+        <Header login={this.state.login} currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/about' component={About} />
           <Route exact path='/project' component={ListContainer} />
@@ -86,7 +86,7 @@ class App extends Component {
             render={routerProps => (
               <div className='home-container'>
                 <Sidebar />
-                <ProjectContainer />
+                <ProjectContainer currentUser={this.state.currentUser} />
               </div>
             )}
           />
