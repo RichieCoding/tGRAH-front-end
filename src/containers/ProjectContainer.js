@@ -12,7 +12,6 @@ class ProjectContainer extends Component {
     this.setState({
       projectList: [{ name: "New Project" }, ...this.state.projectList]
     });
-    // console.log('hello')
   };
 
   render() {
