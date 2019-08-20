@@ -170,6 +170,25 @@ input[type=submit]:hover {
   background: rgb(87, 228, 181);
 }
 
+
+/*************************
+      Card Component
+*************************/
+
+.to-do-card {
+  margin: 10px 0;
+  background: white;
+  font-size: 8px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+
+/*************************
+      Images
+*************************/
+
 #puglove {
   margin-top: 5em;
 }
