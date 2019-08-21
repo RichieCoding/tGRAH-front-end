@@ -18,7 +18,7 @@ class ListCard extends Component {
       return (
         <div className='list-card-container'>
           <h2>{card.name}</h2>
-          <Card />
+          {card.tasks.map(task => <Card task={task.content} />)}
           <div className="add-card-button">
             <button onClick={this.handleClick}>Add a card</button>
           </div>
