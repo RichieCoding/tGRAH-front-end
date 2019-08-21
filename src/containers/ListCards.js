@@ -1,29 +1,22 @@
 import React, { Component } from "react";
-import Card from '../components/Card'
 import ListCardContainer from "./ListCardContainer";
 
 class ListCard extends Component {
-
   state = {
-    cards: [],
-    clicked: false
-  }
-
-
-  
-  
+    cards: []
+  };
 
   render() {
     const renderListCards = this.props.listCards.map(card => {
       return (
-        <ListCardContainer listCards={card}/>
+        <ListCardContainer
+          listCards={this.props.listCards}
+          listCards={card}
+          loadCurrentProject={this.props.loadCurrentProject}
+        />
       );
     });
-    return (
-      <React.Fragment>
-        {renderListCards}
-      </React.Fragment>
-    );
+    return <React.Fragment>{renderListCards}</React.Fragment>;
   }
 }
 
