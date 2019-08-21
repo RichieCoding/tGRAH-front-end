@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import Project from "../components/Project";
-
+import React, { Component } from 'react';
+import Project from '../components/Project';
 
 class ProjectContainer extends Component {
   state = {
@@ -8,34 +7,33 @@ class ProjectContainer extends Component {
   };
 
   // takes the project id and a name for the project.
-  createNewProject = (name) => {
+  createNewProject = name => {
     // Get the current user's ID
-    const user_id = this.props.currentUser.user_id
-    // Make the post request 
-    fetch("http://localhost:3000/projects", {
+    const user_id = this.props.currentUser.user_id;
+    // Make the post request
+    fetch('http://localhost:3000/projects', {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": localStorage.token
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.token
       },
       body: JSON.stringify({ user_id, name })
     })
       .then(res => res.json())
       .then(projectData => {
-        // debugger;
-        if (projectData.errors)
-        this.setState({
-          projectList: [{ name }, ...this.state.projectList]
-        });
-      })
+        let { id, attributes } = projectData.data
+        let newProjectObj = { id, ...attributes }
+          this.setState({
+            projectList: [newProjectObj, ...this.state.projectList]
+          });
+      });
   };
-
 
   render() {
     // console.log(this.props.currentUser)
     return (
-      <div className='project-container'>
+      <div className="project-container">
         <div>
           <h2>All Projects</h2>
         </div>
