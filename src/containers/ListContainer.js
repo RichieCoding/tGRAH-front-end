@@ -3,13 +3,12 @@ import ListCard from './ListCard'
 
 class ListContainer extends Component {
 
+
   state = {
-    listCards: [
-      {name: 'Create Backend'},
-      {name: 'Create Frontend'},
-      {name: 'Completed'}
-    ]
+    listCards: [...this.props.currentProject.lists]
   }
+
+  // this.props.currentProject.lists.map
 
   handleClick = () => {
     this.setState({
@@ -19,6 +18,7 @@ class ListContainer extends Component {
 
 
   render() {
+    // debugger;
     return (
       <div className="list-container">
         <ListCard listCards={this.state.listCards}/>
