@@ -160,6 +160,7 @@ class App extends Component {
                 <ListContainer
                   {...renderProps}
                   currentProject={this.state.currentProject}
+                  loadCurrentProject={this.loadCurrentProject}
                 />
                 )
 

@@ -21,7 +21,7 @@ class ListContainer extends Component {
     // debugger;
     return (
       <div className="list-container">
-        <ListCards listCards={this.state.listCards}/>
+        <ListCards listCards={this.state.listCards} loadCurrentProject={this.props.loadCurrentProject}/>
         <div onClick={this.handleClick} className='list-card-container'>
           <h3>Add a List</h3>
         </div>
