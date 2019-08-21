@@ -15,13 +15,19 @@ class Signup extends Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault()
+    let { name, username, email, password } = this.state
+    this.props.registerUser(name, username, email, password)
+  }
+
   render() {
     return (
       <div className='login-component'>
         <div id='login-header'>
           <h2>Signup</h2>
         </div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input
             type='text'
             name='name'
