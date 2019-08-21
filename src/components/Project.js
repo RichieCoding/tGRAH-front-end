@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 export class Project extends Component {
 
-  handleClick = () => {
-    console.log('hello')
+  handleClick = (evt, projectId) => {
+    // Method that gets the project information
+    this.props.loadCurrentProject(projectId)
   }
 
   render() {
     const renderProjects = this.props.projects.map(project => {
-      return <div onClick={this.handleClick} className="project"><h3>{project.name}</h3></div>
+      return <Link to={`/projects/${project.id}`}><div onClick={evt => this.handleClick(evt, project.id)} className="project"><h3>{project.name}</h3></div></Link>
     })
-    
     return (
       <div className='single-project-container'>
         {renderProjects}
