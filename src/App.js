@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     login: false,
     projectList: [],
+    currentProject: {},
     projectsLoaded: false
   };
 
@@ -29,24 +30,27 @@ class App extends Component {
 
   logInUserByToken = () => {
     fetch("http://localhost:3000/persist", {
-      methodL: 'GET',
+      methodL: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.token,
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        Authorization: localStorage.token,
+        Accept: "application/json"
       }
-    }).then(res => res.json())
+    })
+      .then(res => res.json())
       .then(userInfo => {
-        this.setState({
-          login: true,
-          currentUser: userInfo
-        }, () => {
-          // Set the user's projects to true
-          this.fetchprojectList();
-        })
-      })
-  }
-
+        this.setState(
+          {
+            login: true,
+            currentUser: userInfo
+          },
+          () => {
+            // Set the user's projects to true
+            this.fetchprojectList();
+          }
+        );
+      });
+  };
 
   // Get user from token
   getUserFromToken = () => {
@@ -119,7 +123,24 @@ class App extends Component {
         });
       });
   };
-  
+
+  loadCurrentProject = projectId => {
+    fetch(`http://localhost:3000/projects/${projectId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(fetchData => {
+        let { attributes } = fetchData.data;
+        this.setState({
+          currentProject: {...attributes}
+        });
+      });
+  };
 
   render() {
     return this.state.login ? (
@@ -127,7 +148,20 @@ class App extends Component {
         <Header login={this.state.login} currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/about' component={About} />
-          <Route exact path='/project' component={ListContainer} />
+          <Route
+            exact
+            path='/projects/:id'
+            render={renderProps => {
+              let foundProjectArr = document.URL.split("/");
+              let currentProject = foundProjectArr[foundProjectArr.length - 1];
+              return (
+                <ListContainer
+                  {...renderProps}
+                  currentProject={this.state.currentProject}
+                />
+              );
+            }}
+          />
           <Route
             exact
             path='/'
@@ -136,13 +170,10 @@ class App extends Component {
                 <Sidebar />
                 {this.state.projectsLoaded ? (
                   <ProjectContainer
+                    {...routerProps}
                     currentUser={this.state.currentUser}
-                    render={routerProps => (
-                      <ProjectContainer
-                        {...routerProps}
-                        userLoggedIn={this.state.login}
-                      />
-                    )}
+                    userLoggedIn={this.state.login}
+                    loadCurrentProject={this.loadCurrentProject}
                     projectList={this.state.projectList}
                   />
                 ) : (
