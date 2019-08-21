@@ -1,28 +1,22 @@
 import React, { Component } from "react";
 import Card from '../components/Card'
+import ListCardContainer from "./ListCardContainer";
 
 class ListCard extends Component {
 
   state = {
-    cards: []
+    cards: [],
+    clicked: false
   }
 
 
-  handleClick = () => {
-    console.log('hello')
-  }
+  
   
 
   render() {
     const renderListCards = this.props.listCards.map(card => {
       return (
-        <div className='list-card-container'>
-          <h2>{card.name}</h2>
-          {card.tasks.map(task => <Card task={task.content} />)}
-          <div className="add-card-button">
-            <button onClick={this.handleClick}>Add a card</button>
-          </div>
-        </div>
+        <ListCardContainer listCards={card}/>
       );
     });
     return (
