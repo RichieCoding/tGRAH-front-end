@@ -11,7 +11,9 @@ import ListContainer from "./containers/ListContainer";
 
 class App extends Component {
   state = {
-    login: false
+    login: false,
+    projectList: [],
+    projectsLoaded: false
   };
 
   componentDidMount() {
@@ -24,6 +26,27 @@ class App extends Component {
       ? this.getUserFromToken()
       : console.log("You're not logged in, buddy!!");
   };
+
+  logInUserByToken = () => {
+    fetch("http://localhost:3000/persist", {
+      methodL: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.token,
+        'Accept': 'application/json'
+      }
+    }).then(res => res.json())
+      .then(userInfo => {
+        this.setState({
+          login: true,
+          currentUser: userInfo
+        }, () => {
+          // Set the user's projects to true
+          this.fetchprojectList();
+        })
+      })
+  }
+
 
   // Get user from token
   getUserFromToken = () => {
@@ -44,6 +67,9 @@ class App extends Component {
           },
           () => {
             console.log(this.state.currentUser);
+            if (this.state.login) {
+              this.logInUserByToken();
+            }
           }
         );
       });
@@ -68,8 +94,29 @@ class App extends Component {
           () => {
             // store token in local storage
             localStorage.setItem("token", userInfo.token);
+            // Set the user's projects to true
+            this.fetchprojectList();
           }
         );
+      });
+  };
+
+  fetchprojectList = () => {
+    // debugger
+    // if (!this.props.userLoggedIn) return;
+    fetch(`http://localhost:3000/users/${this.state.currentUser.user_id}`, {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+      .then(resp => resp.json())
+      .then(respData => {
+        // console.log(data)
+        // debugger;
+        this.setState({
+          projectList: respData.data.attributes.projects,
+          projectsLoaded: true
+        });
       });
   };
 
@@ -86,7 +133,22 @@ class App extends Component {
             render={routerProps => (
               <div className='home-container'>
                 <Sidebar />
-                <ProjectContainer currentUser={this.state.currentUser} />
+                {this.state.projectsLoaded ? (
+                  <ProjectContainer
+                    currentUser={this.state.currentUser}
+                    render={routerProps => (
+                      <ProjectContainer
+                        {...routerProps}
+                        userLoggedIn={this.state.login}
+                      />
+                    )}
+                    projectList={this.state.projectList}
+                  />
+                ) : (
+                  <div>
+                    <h2>Please wait while we get your projects together...</h2>
+                  </div>
+                )}
               </div>
             )}
           />
