@@ -1,16 +1,36 @@
 import React, { Component } from "react";
 import Project from "../components/Project";
 
+
 class ProjectContainer extends Component {
   state = {
     projectList: this.props.projectList
   };
 
-  handleClick = () => {
-    this.setState({
-      projectList: [{ name: "New Project" }, ...this.state.projectList]
-    });
+  // takes the project id and a name for the project.
+  createNewProject = (name) => {
+    // Get the current user's ID
+    const user_id = this.props.currentUser.user_id
+    // Make the post request 
+    fetch("http://localhost:3000/projects", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": localStorage.token
+      },
+      body: JSON.stringify({ user_id, name })
+    })
+      .then(res => res.json())
+      .then(projectData => {
+        // debugger;
+        if (projectData.errors)
+        this.setState({
+          projectList: [{ name }, ...this.state.projectList]
+        });
+      })
   };
+
 
   render() {
     // console.log(this.props.currentUser)
@@ -22,8 +42,9 @@ class ProjectContainer extends Component {
         <Project
           currentProject={this.props.currentProject}
           projects={this.state.projectList}
-          handleClick={this.handleClick}
           loadCurrentProject={this.props.loadCurrentProject}
+          renderProjectForm={this.renderProjectForm}
+          createNewProject={this.createNewProject}
         />
       </div>
     );
