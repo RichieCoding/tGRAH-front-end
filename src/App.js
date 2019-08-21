@@ -46,6 +46,7 @@ class App extends Component {
         })
       })
   }
+  
 
 
   // Get user from token
@@ -119,7 +120,7 @@ class App extends Component {
         });
       });
   };
-  
+
 
   render() {
     return this.state.login ? (
