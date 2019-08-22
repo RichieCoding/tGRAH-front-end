@@ -47,11 +47,11 @@ class Login extends Component {
         <p>
           <Link to={"/signup"}>Create an Account</Link>
         </p>
-        <img
+        {/* <img
           id='puglove'
           src='https://media0.giphy.com/media/onsxwAbM8xUNa/source.gif'
           alt='doggie'
-        />
+        /> */}
       </div>
     );
   }
