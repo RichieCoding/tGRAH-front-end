@@ -23,10 +23,13 @@ class Card extends Component {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: localStorage.token
+        'Accept': "application/json",
+        'Authorization': localStorage.token
       }
     })
+
+    this.props.deleteCard(this.props.taskId);
+    
   };
 
   render() {
