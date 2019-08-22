@@ -50,7 +50,7 @@ class ListCardContainer extends Component {
         <div className='list-card-container'>
           <h2>{this.props.listCards.name}</h2>
           {this.state.taskCards.map(task => (
-            <Card task={task.content} />
+            <Card task={task.content} taskId={task.id} />
           ))}
           {!this.state.clicked ? (
             <div className='add-card-button'>

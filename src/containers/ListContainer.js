@@ -6,6 +6,7 @@ class ListContainer extends Component {
 
   state = {
     listCards: this.props.currentProject.lists,
+    inputValue: '',
     clicked: false
   }
 
@@ -23,6 +24,41 @@ class ListContainer extends Component {
     })
   }
 
+  handleChange = (e) => {
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.props)
+    fetch(`http://localhost:3000/lists`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        project_id: 2,
+        name: this.state.inputValue,
+      })
+    })
+    .then(resp => resp.json())
+    .then(respData => {
+      this.setState({
+        listCards: [respData.data.attributes, ...this.state.listCards],
+        clicked: false,
+        inputValue: ''
+      })
+    })
+
+    // this.setState({
+    //   listCards: [{name: this.state.inputValue}, ...this.state.listCards]
+    // })
+  }
+
 
   render() {
     // debugger;
@@ -34,8 +70,8 @@ class ListContainer extends Component {
           <h3>Add a List</h3>
         </div>
         :
-        <form className='list-container-form'>
-          <input type="text"/>
+        <form onSubmit={this.handleSubmit} className='list-container-form'>
+          <input type="text" onChange={this.handleChange} value={this.state.inputValue} placeholder="Enter a List title..."/>
           <div className='list-container-form-submit-wrapper'>
             <input type="submit"/>
             <h2 onClick={this.handleClick}>x</h2>
