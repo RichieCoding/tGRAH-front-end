@@ -12,6 +12,7 @@ import ListContainer from "./containers/ListContainer";
 class App extends Component {
   state = {
     login: false,
+    currentUser: {},
     projectList: [],
     currentProject: {},
     currentProjectLoaded: false,
@@ -52,6 +53,14 @@ class App extends Component {
         );
       });
   };
+
+  logOutUser = () => {
+    localStorage.clear()
+    this.setState({
+      login: false,
+      currentUser: {}
+    })
+  }
 
   // Get user from token
   getUserFromToken = () => {
@@ -183,7 +192,7 @@ class App extends Component {
   render() {
     return this.state.login ? (
       <Router>
-        <Header login={this.state.login} currentUser={this.state.currentUser} resetCurrentProject={this.resetCurrentProject} />
+        <Header login={this.state.login} currentUser={this.state.currentUser} resetCurrentProject={this.resetCurrentProject} logOutUser={this.logOutUser} />
         <Switch>
           <Route exact path='/about' component={About} />
           <Route
