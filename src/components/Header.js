@@ -8,7 +8,7 @@ class Header extends Component {
   // }
 
   handleClick = () => {
-    localStorage.clear()
+    this.props.logOutUser()
   }
 
   handleProjectReset = () => {
