@@ -145,6 +145,13 @@ class App extends Component {
       });
   };
 
+  resetCurrentProject = () => {
+    this.setState({
+      currentProject: {},
+      currentProjectLoaded: false
+    })
+  }
+
   registerUser = (name, username, email, password) => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -176,7 +183,7 @@ class App extends Component {
   render() {
     return this.state.login ? (
       <Router>
-        <Header login={this.state.login} currentUser={this.state.currentUser} />
+        <Header login={this.state.login} currentUser={this.state.currentUser} resetCurrentProject={this.resetCurrentProject} />
         <Switch>
           <Route exact path='/about' component={About} />
           <Route
@@ -184,12 +191,13 @@ class App extends Component {
             path='/projects/:id'
             render={renderProps => {
               let foundProjectArr = document.URL.split("/");
-              let currentProject = foundProjectArr[foundProjectArr.length - 1];
+              let currentProjectID = foundProjectArr[foundProjectArr.length - 1];
               if(this.state.currentProjectLoaded) return (
                 <ListContainer
                   {...renderProps}
                   currentProject={this.state.currentProject}
                   loadCurrentProject={this.loadCurrentProject}
+                  currentProjectId={currentProjectID}
                 />
                 )
 
