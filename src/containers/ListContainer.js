@@ -32,6 +32,7 @@ class ListContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    let project_id = document.URL.split('projects/')[1]
     console.log(this.props)
     fetch(`http://localhost:3000/lists`, {
       method: 'POST',
@@ -41,14 +42,23 @@ class ListContainer extends Component {
         Authorization: localStorage.token
       },
       body: JSON.stringify({
-        project_id: 2,
+        project_id,
         name: this.state.inputValue,
       })
     })
     .then(resp => resp.json())
     .then(respData => {
+      // debugger;
+      // Use destructuring to reform the data
+      let id = respData.data.id
+      let { name, project_id, task } = respData.data.attributes
+      let newListCardObj = { 
+        id, 
+        name,
+        tasks: task
+      }
       this.setState({
-        listCards: [respData.data.attributes, ...this.state.listCards],
+        listCards: [...this.state.listCards, newListCardObj],
         clicked: false,
         inputValue: ''
       })
