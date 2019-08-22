@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ListCardContainer from "./ListCardContainer";
 
-class ListCard extends Component {
+class ListCards extends Component {
   state = {
     cards: []
   };
@@ -20,4 +20,4 @@ class ListCard extends Component {
   }
 }
 
-export default ListCard;
+export default ListCards;

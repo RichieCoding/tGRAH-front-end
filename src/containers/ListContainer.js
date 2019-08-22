@@ -51,11 +51,11 @@ class ListContainer extends Component {
       // debugger;
       // Use destructuring to reform the data
       let id = respData.data.id
-      let { name, project_id, task } = respData.data.attributes
+      let { name, project_id, tasks } = respData.data.attributes
       let newListCardObj = { 
-        id, 
+        id,
         name,
-        tasks: task
+        tasks
       }
       this.setState({
         listCards: [...this.state.listCards, newListCardObj],
