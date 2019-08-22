@@ -17,19 +17,17 @@ class Card extends Component {
     });
   };
 
-  // handleClick = () => {
-  //   console.log(this.props);
-  //   fetch(`http://localhost:3000/tasks/${this.props.taskId}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json",
-  //       Authorization: localStorage.token
-  //     },
-  //   })
-  //   .then(resp=>resp.json())
-  //   .then(console.log)
-  // };
+  handleClick = () => {
+    console.log(this.props);
+    fetch(`http://localhost:3000/tasks/${this.props.taskId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.token
+      }
+    })
+  };
 
   render() {
     return (
