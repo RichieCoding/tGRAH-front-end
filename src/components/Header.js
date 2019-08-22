@@ -7,6 +7,10 @@ class Header extends Component {
   //   currentFirstLetter
   // }
 
+  handleClick = () => {
+    localStorage.clear()
+  }
+
   render() {
     return (
       <nav className="header">
@@ -14,9 +18,9 @@ class Header extends Component {
           <h1>Trello Clone</h1>
           { this.props.login ?
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li>{this.props.currentUser.username}</li>
+            <li><Link to="/" className='cool-link'>Home</Link></li>
+            <li><Link to="/about" className='cool-link'>About</Link></li>
+            <li><Link to='/login' className='cool-link' onClick={this.handleClick}>{this.props.currentUser.username}</Link></li>
           </ul>
           :
           null

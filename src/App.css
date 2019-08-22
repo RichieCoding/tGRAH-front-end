@@ -42,16 +42,47 @@ input {
 }
 
 .sidebar-container {
+  color: rgb(216, 216, 216);
   grid-area: sidebar;
   width: 75%;
   margin: 1.5em auto;
   background: rgb(white);
-  
+}
+
+
+.sidebar-container h2 {
+  font-size: 2em;
+  color: rgb(216, 216, 216);
+  margin-bottom: 10px;
+  /* background: rgba(19, 70, 138, 30%); */
+  border-radius: 10px;
+}
+
+.friends-wrapper {
+  margin-top: 4em;
+}
+
+.sidebar-container h4 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.sidebar-container h4 a:hover {
+  color: white;
+}
+
+.sidebar-container a:visited {
+  color: rgb(216, 216, 216);
 }
 
 .project-container {
   grid-area: project;
   margin-top: 1.5em;
+}
+
+.project-container h2 {
+  font-size: 2em;
+  color: rgb(216, 216, 216)
 }
 
 .single-project-container {
@@ -204,6 +235,7 @@ input {
   background: rgba(19, 70, 138, 30%);
 }
 
+
 .header-container {
   width: 80%;
   margin: 0 auto;
@@ -255,10 +287,11 @@ input {
   background: rgb(224, 224, 224);
   height: 100px;
   width: 250px;
+  border-radius: 10px;
 }
 
 .project:hover {
-  background: rgb(235, 234, 234);
+  background: white;
 }
 
 .project h3 {
@@ -347,3 +380,27 @@ input {
   margin-top: 15em;
   width: 10em;
 }
+
+
+
+ li a{
+  display: inline-block;
+  text-decoration: none;
+  font-weight: lighter;
+  font-size: 20px;
+  padding: 0 20px;
+ }
+ 
+ .cool-link::after{
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width .3s;
+ }
+
+ .cool-link:hover::after{
+  width: 100%;
+  transition: width .3s;
+ }
