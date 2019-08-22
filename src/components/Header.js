@@ -15,7 +15,7 @@ class Header extends Component {
     return (
       <nav className="header">
         <div className="header-container">
-          <h1>Trello Clone</h1>
+          <h1>Chello</h1>
           { this.props.login ?
           <ul>
             <li><Link to="/" className='cool-link'>Home</Link></li>

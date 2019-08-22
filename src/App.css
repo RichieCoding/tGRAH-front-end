@@ -271,11 +271,20 @@ input {
 *************************/
 
 .about-container {
-  color: black;
+
+  color: rgb(216, 216, 216);
   font-size: 1.5em;
   width: 75%;
   margin: 10px auto;
   text-align: center
+}
+
+.about-container h2 {
+  margin-bottom: 1.2em;
+}
+
+.about-container h3 {
+  margin-bottom: .8em;
 }
 
 /*************************
