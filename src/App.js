@@ -58,9 +58,9 @@ class App extends Component {
     fetch("http://localhost:3000/persist", {
       method: "GET",
       headers: {
-        Authorization: localStorage.token,
+        'Authorization': localStorage.token,
         "Content-Type": "application/json",
-        Accept: "application/json"
+        'Accept': "application/json"
       }
     })
       .then(res => res.json())
@@ -91,6 +91,7 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(userInfo => {
+        if (userInfo.errors) return alert(userInfo.errors.reduce((message, string) => message += `${string}. \n`, ''))
         this.setState(
           {
             login: true,
@@ -141,6 +142,34 @@ class App extends Component {
           currentProject: {...attributes},
           currentProjectLoaded: true
         });
+      });
+  };
+
+  registerUser = (name, username, email, password) => {
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ name, username, email, password })
+    })
+      .then(res => res.json())
+      .then(userInfo => {
+        // debugger;
+        if (userInfo.errors) return alert(userInfo.error.reduce((message, string) => message += `${string}. \n`, ''))
+        this.setState(
+          {
+            login: true,
+            currentUser: userInfo
+          },
+          () => {
+            // store token in local storage
+            localStorage.setItem('token', userInfo.token);
+            // Set the user's projects to true
+            this.fetchprojectList();
+          }
+        );
       });
   };
 
@@ -199,14 +228,20 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path='/login'
+            path="/login"
             render={routerProps => (
               <Login {...routerProps} logInUser={this.logInUser} />
             )}
           />
-          <Route exact path='/signup' component={Signup} />
           <Route
-            path='/*'
+            exact
+            path="/signup"
+            render={routerProps => (
+              <Signup {...routerProps} registerUser={this.registerUser} />
+            )}
+          />
+          <Route
+            path="/*"
             render={routerProps => (
               <Login {...routerProps} logInUser={this.logInUser} />
             )}
