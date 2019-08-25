@@ -224,7 +224,7 @@ class App extends Component {
             }}
           />
           <Route
-            exact
+            // exact
             path='/'
             render={routerProps => (
               <div className='home-container'>
