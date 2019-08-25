@@ -32,9 +32,9 @@ class App extends Component {
   };
 
   checkForProjectId = () => {
-    localStorage.projectId 
-    ? this.loadCurrentProject(localStorage.projectId)
-    : console.log("no projects")
+    if (localStorage.projectId && document.URL.includes("/projects")) {
+      this.loadCurrentProject(localStorage.projectId)
+    }
   }
 
   logInUserByToken = () => {
