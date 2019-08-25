@@ -22,6 +22,7 @@ class App extends Component {
   componentDidMount() {
     // Check local storage for a token
     this.checkForToken();
+    this.checkForProjectId();
   }
 
   checkForToken = () => {
@@ -29,6 +30,12 @@ class App extends Component {
       ? this.getUserFromToken()
       : console.log("You're not logged in, buddy!!");
   };
+
+  checkForProjectId = () => {
+    localStorage.projectId 
+    ? this.loadCurrentProject(localStorage.projectId)
+    : console.log("no projects")
+  }
 
   logInUserByToken = () => {
     fetch("http://localhost:3000/persist", {
@@ -151,7 +158,8 @@ class App extends Component {
           currentProject: {...attributes},
           currentProjectLoaded: true
         });
-      });
+      })
+      .then(localStorage.setItem("projectId", projectId))
   };
 
   resetCurrentProject = () => {
@@ -209,7 +217,7 @@ class App extends Component {
                   currentProjectId={currentProjectID}
                 />
                 )
-
+                
                 return (
                   <h1>Please wait while we load your project...</h1>
                 )
