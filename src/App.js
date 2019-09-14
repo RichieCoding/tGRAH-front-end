@@ -173,7 +173,7 @@ class App extends Component {
       .then(res => res.json())
       .then(userInfo => {
         // debugger;
-        if (userInfo.errors) return alert(userInfo.error.reduce((message, string) => message += `${string}. \n`, ''))
+        if (userInfo.errors) return alert(userInfo.errors.reduce((message, string) => message += `${string}. \n`, ''))
         this.setState(
           {
             login: true,
