@@ -11,7 +11,7 @@ class ProjectContainer extends Component {
     // Get the current user's ID
     const user_id = this.props.currentUser.user_id;
     // Make the post request
-    fetch('http://localhost:3000/projects', {
+    fetch('https://chello-api.herokuapp.com/projects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
