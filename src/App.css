@@ -65,6 +65,7 @@ input {
 .sidebar-container h4 {
   font-size: 1.2em;
   margin-bottom: 5px;
+  color: rgb(216, 216, 216);
 }
 
 .sidebar-container h4 a:hover {
